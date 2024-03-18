@@ -21,5 +21,11 @@ func Configurar(router *mux.Router) *mux.Router {
 	for _, rota := range rotas {
 		router.HandleFunc(rota.URI, rota.Funcao).Methods(rota.Metodo)
 	}
+
+	//Estou apontando para o go os arquivos que se encontram em assets, css e js
+	fileServer := http.FileServer(http.Dir("./assets/"))
+	//Estou dizendo para funcionar qualquer arquivo com /assets sem precisar buscar desde a raiz com ..
+	router.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fileServer))
+
 	return router
 }
