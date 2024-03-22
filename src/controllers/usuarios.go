@@ -3,9 +3,9 @@ package controllers
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
+	"webapp/src/respostas"
 )
 
 // CriarUsuario chama a API para cadastrar um usuário no banco de dados
@@ -28,5 +28,5 @@ func CriarUsuario(w http.ResponseWriter, r *http.Request) {
 	}
 	defer response.Body.Close()
 
-	fmt.Println(response.Body)
+	respostas.JSON(w, response.StatusCode, nil)
 }
