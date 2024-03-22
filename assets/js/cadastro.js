@@ -8,7 +8,7 @@ function criarUsuario(evento) {
     return;
   }
 
-  $.ajax({
+  var resposta = $.ajax({
     url: '/usuarios',
     method: 'POST',
     data: {
@@ -17,5 +17,11 @@ function criarUsuario(evento) {
       nick: $('#nick').val(),
       senha: $('#senha').val(),
     },
+  });
+  resposta.done(function () {
+    alert('Usuário cadastrado com sucesso!');
+  });
+  resposta.fail(function () {
+    alert('Erro ao cadastrar usuário');
   });
 }
