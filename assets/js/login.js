@@ -2,6 +2,7 @@ $('#login').on('submit', fazerLogin);
 
 function fazerLogin(evento) {
   evento.preventDefault();
+
   $.ajax({
     url: '/login',
     method: 'POST',
@@ -14,6 +15,6 @@ function fazerLogin(evento) {
       window.location = '/home';
     })
     .fail(function () {
-      alert('usuário ou senha inválidos!');
+      Swal.fire('Ops...', 'Usuário ou senha incorretos!', 'error');
     });
 }
