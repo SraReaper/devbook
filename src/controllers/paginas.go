@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -147,6 +148,10 @@ func CarregarPerfilDoUsuario(w http.ResponseWriter, r *http.Request) {
 	if erro != nil {
 		respostas.JSON(w, http.StatusInternalServerError, respostas.ErroAPI{Erro: erro.Error()})
 		return
+	}
+
+	for _, v := range usuario.Seguidores {
+		log.Println(v.ID)
 	}
 
 	utils.ExecutarTemplate(w, "usuario.html", struct {
